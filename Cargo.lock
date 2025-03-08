@@ -10,7 +10,6 @@ dependencies = [
  "actix-web",
  "crypto-hash",
  "hex 0.4.3",
- "log",
  "serde",
  "serde_json",
 ]

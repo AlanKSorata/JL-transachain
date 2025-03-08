@@ -123,7 +123,7 @@ async fn main() -> std::io::Result<()> {
 
     println!("挖掘区块 {:?}\nInfo: {:#?}\n", &block, &block.transactions);
 
-    last_hash = block.hash.clone();
+    // last_hash = block.hash.clone();
 
     // 更新区块链
     blockchain
@@ -134,7 +134,7 @@ async fn main() -> std::io::Result<()> {
     let shared_blockchain = Arc::new(Mutex::new(blockchain));
 
     // 创建服务器实例并运行
-    let server = MyServer::new("127.0.0.1:8080", shared_blockchain);
+    let server = MyServer::new("0.0.0.0:8080", shared_blockchain);
     println!("Server is running on http://127.0.0.1:8080");
     server.run().await
 }

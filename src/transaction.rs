@@ -1,7 +1,6 @@
 use super::*;
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
-use serde::{Deserialize, Serialize};
 
 // 定义交易输出结构体
 #[derive(Clone, Debug, Serialize, Deserialize)]
