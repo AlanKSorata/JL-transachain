@@ -2,9 +2,9 @@ use super::*;
 use std::collections::HashSet;
 
 // 定义交易输出结构体
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Output {
-    pub to_addr: Address,
+    pub receiver: Address,
     pub value: u64,
 }
 
@@ -16,7 +16,7 @@ impl Hashable for Output {
         let mut bytes = vec![];
 
         // 添加地址字节
-        bytes.extend(self.to_addr.as_bytes());
+        bytes.extend(self.receiver.as_bytes());
         bytes.extend(&u64_bytes(&self.value));
 
         bytes
@@ -24,6 +24,7 @@ impl Hashable for Output {
 }
 
 // 定义交易结构体
+#[derive(Debug)]
 pub struct Transaction {
     pub inputs: Vec<Output>,
     pub outputs: Vec<Output>,
@@ -97,11 +98,11 @@ mod tests {
     fn test_transaction() {
         // 创建两个输出
         let output1 = Output {
-            to_addr: Address::new(),
+            receiver: Address::new(),
             value: 100,
         };
         let output2 = Output {
-            to_addr: Address::new(),
+            receiver: Address::new(),
             value: 200,
         };
         // 创建交易
