@@ -1,3 +1,0 @@
-
-
-Potential panic in D:\rust_src\projects\JL-transachain\src\lib.rs at line 8: let duration = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
