@@ -1,3 +1,6 @@
+mod p2p;
+mod server;
+
 use blockchainlib::*;
 
 fn main() {
