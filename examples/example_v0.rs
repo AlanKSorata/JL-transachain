@@ -7,9 +7,9 @@ fn main() {
 
     // 创建创世区块
     let mut genesis_block = Block::new(
-        0,                      // 索引
-        now(),                        // 时间戳
-        vec![0; 32],   // 前一个区块的哈希
+        0,           // 索引
+        now(),       // 时间戳
+        vec![0; 32], // 前一个区块的哈希
         vec![Transaction {
             // 交易
             inputs: vec![],
@@ -30,7 +30,10 @@ fn main() {
     // 挖掘创世区块
     genesis_block.mine();
 
-    println!("挖掘创世区块 {:?}\nInfo: {:#?}", &genesis_block, &genesis_block.transactions);
+    println!(
+        "挖掘创世区块 {:?}\nInfo: {:#?}",
+        &genesis_block, &genesis_block.transactions
+    );
 
     // 记录上一个区块的哈希
     let mut last_hash = genesis_block.hash.clone();
@@ -81,9 +84,7 @@ fn main() {
     last_hash = block.hash.clone();
 
     // 更新区块链
-    blockchain
-        .update_with_block(block)
-        .expect("添加区块失败");
+    blockchain.update_with_block(block).expect("添加区块失败");
 
     // println!(">> blocks: {:?}", &blockchain.blocks);
 
@@ -94,21 +95,19 @@ fn main() {
         2,
         now(),
         last_hash,
-        vec![
-            Transaction {
-                inputs: vec![],
-                outputs: vec![
-                    transaction::Output {
-                        receiver: "Alice".to_owned(),
-                        value: 3,
-                    },
-                    transaction::Output {
-                        receiver: "Bob".to_owned(),
-                        value: 12,
-                    },
-                ],
-            },
-        ],
+        vec![Transaction {
+            inputs: vec![],
+            outputs: vec![
+                transaction::Output {
+                    receiver: "Alice".to_owned(),
+                    value: 3,
+                },
+                transaction::Output {
+                    receiver: "Bob".to_owned(),
+                    value: 12,
+                },
+            ],
+        }],
         difficulty,
     );
 
@@ -120,7 +119,5 @@ fn main() {
     last_hash = block.hash.clone();
 
     // 更新区块链
-    blockchain
-        .update_with_block(block)
-        .expect("添加区块失败");
+    blockchain.update_with_block(block).expect("添加区块失败");
 }
