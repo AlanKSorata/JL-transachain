@@ -1,8 +1,9 @@
 use super::*;
 use std::collections::HashSet;
+use serde::{Deserialize, Serialize};
 
 // 定义交易输出结构体
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Output {
     pub receiver: Address,
     pub value: u64,
@@ -24,7 +25,7 @@ impl Hashable for Output {
 }
 
 // 定义交易结构体
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct Transaction {
     pub inputs: Vec<Output>,
     pub outputs: Vec<Output>,

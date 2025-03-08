@@ -119,4 +119,6 @@ pub use crate::hashable::Hashable;
 mod blockchain;
 pub use crate::blockchain::Blockchain;
 pub mod transaction;
+mod p2p;
+
 pub use crate::transaction::Transaction;

@@ -1,6 +1,9 @@
 use super::*;
 use std::fmt::{self, Debug, Formatter};
+use std::io::ErrorKind;
+use serde::Serialize;
 
+#[derive(Serialize)]
 pub struct Block {
     pub index: u32,
     pub timestamp: u128,
@@ -44,15 +47,16 @@ impl Block {
         }
     }
 
-    pub fn mine(&mut self) {
+    pub fn mine(&mut self) -> std::io::Result<()> {
         for nonce_attempt in 0..u64::MAX {
             self.nonce = nonce_attempt;
             let hash = self.hash();
             if check_difficulty(&hash, self.difficulty) {
                 self.hash = hash;
-                return;
+                return Ok(());
             }
         }
+        Err(std::io::Error::new(ErrorKind::InvalidData, "Couldn't find valid hash"))
     }
 }
 

@@ -5,11 +5,13 @@ use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use std::thread;
 
+#[allow(dead_code)]
 pub(crate) struct P2PNode {
     listener: TcpListener,
     peers: Arc<Mutex<HashSet<String>>>,
 }
 
+#[allow(dead_code)]
 impl P2PNode {
     pub(crate) fn new(addr: &str) -> std::io::Result<Self> {
         let listener = TcpListener::bind(addr)?;
